@@ -30,10 +30,9 @@ void user_interface() {
 	printf("=================================\n");
 	printf("1. 책 목록 보여주기\n");
 	printf("2. 책 추가하기\n");
-	printf("3. 책 삭제하기\n");
-	printf("4. 책 빌리기\n");
-	printf("5. 책 반납하기\n");
-	printf("6. 종료하기\n");
+	printf("3. 책 빌리기\n");
+	printf("4. 책 반납하기\n");
+	printf("5. 종료하기\n");
 	printf("=================================\n");
 }
 
@@ -159,7 +158,7 @@ struct Node* Add_book(struct Node* list_head)
 	}
 }*/
 
-struct Node* sub(struct Node* list_head){
+/*struct Node* sub(struct Node* list_head){
 	FILE* fp = fopen("data.txt", "r+");
 	struct Node* Temp = list_head;
 	struct Node* tmp = list_head;
@@ -180,7 +179,7 @@ struct Node* sub(struct Node* list_head){
 	}
 	fclose(fp);
 	list_head = Temp;
-}
+}*/
 
 struct Node* Borrow_book(struct Node* list_head) {
 	FILE* fp = fopen("data.txt", "r+");
@@ -289,7 +288,8 @@ int main(){
 
 		else if (num == 3) {
 			fp1 = fopen("data.txt", "a+");
-			head = sub(head, search_book, head_book);
+			open_file(fp1);
+			Borrow_book(head);
 			fclose(fp1);
 			continue;
 		}
@@ -297,20 +297,12 @@ int main(){
 		else if (num == 4) {
 			fp1 = fopen("data.txt", "a+");
 			open_file(fp1);
-			Borrow_book(head);
-			fclose(fp1);
-			continue;
-		}
-
-		else if (num == 5) {
-			fp1 = fopen("data.txt", "a+");
-			open_file(fp1);
 			Back_book(head);
 			fclose(fp1);
 			continue;
 		}
 
-		else if (num == 6) {
+		else if (num == 5) {
 			break;
 			continue;
 		}
