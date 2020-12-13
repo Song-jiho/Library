@@ -28,16 +28,16 @@ struct Node* search_book(struct Node* list_head, char* name)
 
 void user_interface() {
 	printf("=================================\n");
-	printf("1. Ã¥ ¸ñ·Ï º¸¿©ÁÖ±â\n");
-	printf("2. Ã¥ Ãß°¡ÇÏ±â\n");
-	printf("3. Ã¥ »èÁ¦ÇÏ±â\n");
-	printf("4. Ã¥ ºô¸®±â\n");
-	printf("5. Ã¥ ¹İ³³ÇÏ±â\n");
-	printf("6. Á¾·áÇÏ±â\n");
+	printf("1. ì±… ëª©ë¡ ë³´ì—¬ì£¼ê¸°\n");
+	printf("2. ì±… ì¶”ê°€í•˜ê¸°\n");
+	printf("3. ì±… ì‚­ì œí•˜ê¸°\n");
+	printf("4. ì±… ë¹Œë¦¬ê¸°\n");
+	printf("5. ì±… ë°˜ë‚©í•˜ê¸°\n");
+	printf("6. ì¢…ë£Œí•˜ê¸°\n");
 	printf("=================================\n");
 }
 
-void txtLoad(struct Node* FirstMember) {   // MemberList.txt ÆÄÀÏ¿¡¼­ Á¤º¸¸¦ ºÒ·¯¿À´Â ÇÔ¼ö
+void txtLoad(struct Node* FirstMember) {   // MemberList.txt íŒŒì¼ì—ì„œ ì •ë³´ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” í•¨ìˆ˜
 	FILE* load = fopen("data.txt", "rt");
 	if (load != NULL) {
 		struct Node* MidNode = NULL;
@@ -70,7 +70,7 @@ void savefile(struct Node* list_head, int noin)
 		list_head = list_head->next;
 	}
 	fclose(fp);
-	printf("ÀúÀåÀ» ¿Ï·áÇß½À´Ï´Ù.\n");
+	printf("ì €ì¥ì„ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤.\n");
 }
 
 void open_file(FILE* fp1) {
@@ -89,24 +89,24 @@ struct Node* Add_book(struct Node* list_head)
 {
 	int a;
 
-	printf("¸î ±ÇÀ» ÀÔ·ÂÇÏ½Ç °Ì´Ï±î?: ");
+	printf("ëª‡ ê¶Œì„ ì…ë ¥í•˜ì‹¤ ê²ë‹ˆê¹Œ?: ");
 	scanf("%d", &a);
 
 	struct Node* newNode;
 	for (int i = 0; i < a; i++) {
-		printf("%d¹øÂ° Ã¥ Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À\n", i+1);
+		printf("%dë²ˆì§¸ ì±… ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤\n", i+1);
 		char name[20];
 		char auther[20];
 		char year[5];
-		char borrow[10] = " Àç°íÀÖÀ½";
+		char borrow[10] = " ì¬ê³ ìˆìŒ";
 
-		printf("Ã¥ ÀÌ¸§Àº? : ");
+		printf("ì±… ì´ë¦„ì€? : ");
 		scanf("%s", name);
 
-		printf("Ã¥ ÀúÀÚ´Â? : ");
+		printf("ì±… ì €ìëŠ”? : ");
 		scanf("%s", auther);
 
-		printf("Ã¥ ¹ßÇà³âµµ´Â? : ");
+		printf("ì±… ë°œí–‰ë…„ë„ëŠ”? : ");
 		scanf("%s", year);
 
 		newNode = (struct Node*)malloc(sizeof(struct Node));
@@ -135,7 +135,7 @@ struct Node* Add_book(struct Node* list_head)
 	struct Node* newNode;
 
 	char name[20];
-	printf("»èÁ¦ÇÒ Ã¥ ÀÌ¸§ : ");
+	printf("ì‚­ì œí•  ì±… ì´ë¦„ : ");
 	scanf("%s", name);
 
 	while (seek != NULL) {
@@ -150,7 +150,7 @@ struct Node* Add_book(struct Node* list_head)
 		if (seek1->book_name == tmp) {
 			seek1 = seek1->next;
 			free(seek);
-			printf("»èÁ¦ ¿Ï·á\n");
+			printf("ì‚­ì œ ì™„ë£Œ\n");
 		}
 
 		list_head = list_head->next;
@@ -164,7 +164,7 @@ struct Node* sub(struct Node* list_head){
 	struct Node* Temp = list_head;
 	struct Node* tmp = list_head;
 	char name[20];
-	printf("»èÁ¦ÇÒ Ã¥ ÀÌ¸§ : ");
+	printf("ì‚­ì œí•  ì±… ì´ë¦„ : ");
 	scanf("%s", name);
 
 	tmp = tmp->next;
@@ -192,21 +192,21 @@ struct Node* Borrow_book(struct Node* list_head) {
 	
 	struct Node* Temp = list_head;
 
-	printf("ºô¸®°í ½ÍÀº Ã¥ÀÌ¸§ ÀÔ·Â : ");
+	printf("ë¹Œë¦¬ê³  ì‹¶ì€ ì±…ì´ë¦„ ì…ë ¥ : ");
 	scanf("%s", name);
 	tmp = tmp->next;
 	list_head = list_head->next;
 
 	while (tmp != NULL) {
 		if (strcmp(list_head->book_name, name) == 0){
-			if (strcmp(list_head->book_borrow, "Àç°í¾øÀ½") == 0) {
-				printf("Àç°í°¡ ¾ø½À´Ï´Ù ÁË¼ÛÇÕ´Ï´Ù.\n");
+			if (strcmp(list_head->book_borrow, "ì¬ê³ ì—†ìŒ") == 0) {
+				printf("ì¬ê³ ê°€ ì—†ìŠµë‹ˆë‹¤ ì£„ì†¡í•©ë‹ˆë‹¤.\n");
 				break;
 			}
 			else {
-				pch = strstr(list_head->book_borrow, "Àç°íÀÖÀ½");
-				strncpy(pch, "Àç°í¾øÀ½", 10);
-				printf("´ëÃâµÇ¾ú½À´Ï´Ù\n");
+				pch = strstr(list_head->book_borrow, "ì¬ê³ ìˆìŒ");
+				strncpy(pch, "ì¬ê³ ì—†ìŒ", 10);
+				printf("ëŒ€ì¶œë˜ì—ˆìŠµë‹ˆë‹¤\n");
 			}
 	}
 		fprintf(fp, "%s %s %s %s\n", list_head->book_name, list_head->book_auther, list_head->book_year, list_head->book_borrow);
@@ -226,21 +226,21 @@ struct Node* Back_book(struct Node* list_head) {
 
 	struct Node* Temp = list_head;
 
-	printf("¹İ³³ÇÏ°í ½ÍÀº Ã¥ÀÌ¸§ ÀÔ·Â : ");
+	printf("ë°˜ë‚©í•˜ê³  ì‹¶ì€ ì±…ì´ë¦„ ì…ë ¥ : ");
 	scanf("%s", name);
 	tmp = tmp->next;
 	list_head = list_head->next;
 
 	while (tmp != NULL) {
 		if (strcmp(list_head->book_name, name) == 0) {
-			if (strcmp(list_head->book_borrow, "Àç°íÀÖÀ½") == 0) {
-				printf("Àç°í°¡ ÀÌ¹Ì ÀÖ½À´Ï´Ù.\n");
+			if (strcmp(list_head->book_borrow, "ì¬ê³ ìˆìŒ") == 0) {
+				printf("ì¬ê³ ê°€ ì´ë¯¸ ìˆìŠµë‹ˆë‹¤.\n");
 				break;
 			}
 			else {
-				pch = strstr(list_head->book_borrow, "Àç°í¾øÀ½");
-				strncpy(pch, "Àç°íÀÖÀ½", 10);
-				printf("¹İ³³µÇ¾ú½À´Ï´Ù\n");
+				pch = strstr(list_head->book_borrow, "ì¬ê³ ì—†ìŒ");
+				strncpy(pch, "ì¬ê³ ìˆìŒ", 10);
+				printf("ë°˜ë‚©ë˜ì—ˆìŠµë‹ˆë‹¤\n");
 			}
 		}
 		fprintf(fp, "%s %s %s %s\n", list_head->book_name, list_head->book_auther, list_head->book_year, list_head->book_borrow);
@@ -264,7 +264,7 @@ int main(){
 		head_book = *head->book_name;
 
 		user_interface();
-		printf("¿øÇÏ½Ã´Â ¼­ºñ½º¸¦ °í¸£¼¼¿ä: ");
+		printf("ì›í•˜ì‹œëŠ” ì„œë¹„ìŠ¤ë¥¼ ê³ ë¥´ì„¸ìš”: ");
 		scanf("%d", &num);
 		num = (int)num;
 
@@ -315,7 +315,7 @@ int main(){
 			continue;
 		}
 		else {
-			printf("´Ù½ÃÀÔ·ÂÇÏ¼¼¿ä\n");
+			printf("ë‹¤ì‹œì…ë ¥í•˜ì„¸ìš”\n");
 			continue;
 		}
 	}
